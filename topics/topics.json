@@ -1,0 +1,10 @@
+{
+  "personnage": ["Arthur", "Uther", "Pendragon", "Méléagant", "Dame", "Lac", "Ygerne", "Mevanwi", "Venec",  "Séli", "Viviane", "Bohort", "Guenièvre", "Karadoc", "Léodagan", "Lancelot", "Merlin", "Perceval", "Yvain", "Gauvain", "Blaise", "Cryda"],
+  "role": ["souverain", "chevalier", "chevaliers", "reine", "roi", "enchanteur"],
+  "lien": ["père", "mère", "frère", "soeur", "femme", "mari", "fils", "fille", "belle-fille", "beau-fils", "enfant", "enfants", "cousins", "ami", "famille"],
+  "acteur": ["Alexandre", "Astier", "Nicolas", "Gabion", "Joêlle", "Sevilla", "Anne", "Girouard", "Thomas", "Cousseau"],
+  "lieu": [ "lieux", "Andalousie", "forêt", "château", "cour", "Kaamelott", "île", "Bretagne", "royaume", "Logres", "Aquitaine", "Arcanie", "Caerdydd", "Pays", "Galle", "Table", "Ronde", "Gaunes", "Carmélide"],
+  "guerre": ["épée", "militaire", "mortel", "incursions", "barbares", "combat", "guerrières", "hostile", "agressif", "missions", "rebellion", "vengeance", "meurtre", "troupes", "bataille", "ennemis", "ordres"],
+  "quête": ["Graal", "Quête", "Saint", "défis", "quête", "quêtes", "Lumière", "divine", "Lac", "épée", "Excalibur", "Fée", "missions", "trésors", "Elu", "Table", "Ronde"],
+  "animaux": ["serpent", "chiens", "oiseaux", "pigeons", "lapins", "faisans", "souris", "rongeurs", "chat", "araignée", "corbeau", "truie"]
+}
