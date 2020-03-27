@@ -1,28 +1,46 @@
+import os
 import json
-from kafka import KafkaConsumer, KafkaProducer
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--jars spark-streaming-kafka-0-8-assembly_2.11-2.4.5.jar pyspark-shell'
+from pyspark import SparkContext
+from pyspark.streaming import StreamingContext
+from pyspark.streaming.kafka import KafkaUtils
+from kafka import KafkaProducer
+
 
 JSON_PATH = "../topics/topics.json"
 
-if __name__ == "__main__":
-    consumer = KafkaConsumer("sendWord", bootstrap_servers="localhost:9092", group_id="groupe1")
+
+def udf_process(rdd):
     producer = KafkaProducer(bootstrap_servers="localhost:9092")
-
-    topics = json.load(open(JSON_PATH, 'r'))
-
-    for message in consumer:
-        m = json.loads(message.value.decode())
+    for line in rdd:
+        message = json.loads(line[1])
 
         belong_to_topic = []
-
         for elt in topics:
-            if m["word"] == elt:
-                # on envoie dans Q3: on a un nom de topic
-                q3_message = { "source": m["source"], "topic": elt}
+            if message["word"] == elt:
+                # on a un nom de topic => on envoie dans Q3
+                q3_message = {"source": message["source"], "topic": elt}
                 producer.send("topicName", json.dumps(q3_message).encode())
-            if m["word"] in topics[elt]:
-                # on envoie dans Q2: on a un keyword de topic
+            if message["word"] in topics[elt]:
+                # on a un keyword de topic : on stock le topic
                 belong_to_topic.append(elt)
 
         if len(belong_to_topic) != 0:
-            q2_message = {"source": m["source"], "word": m["word"], "topics": belong_to_topic}
+            q2_message = {"source": message["source"], "word": message["word"], "topics": belong_to_topic}
             producer.send("topicKeyword", json.dumps(q2_message).encode())
+
+if __name__ == "__main__":
+    # Creation du Stream
+    sc = SparkContext(appName='PythonStreamingRecieverKafka')
+    ssc = StreamingContext(sc, 2)  # 2 second window
+    zookeeper_broker = "localhost:2181"
+    topic = "sendWord"
+
+    topics = json.load(open(JSON_PATH, 'r'))
+    kafkaStream = KafkaUtils.createStream(groupId="group1", ssc=ssc, topics={topic: 1}, zkQuorum=zookeeper_broker)
+    print("count: ", kafkaStream)
+
+    kafkaStream.foreachRDD(lambda x: x.foreachPartition(lambda message: udf_process(message)))
+
+    ssc.start()
+    ssc.awaitTermination()

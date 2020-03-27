@@ -1,6 +1,6 @@
 # UntieNotsRecrutement
 
-### Dependances :
+### Dépendances :
 
 python 3.8 (non compatible avec pyspark)  
 kafka-python 2.0.1  
