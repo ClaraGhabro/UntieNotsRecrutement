@@ -1,0 +1,10 @@
+.gitignore
+*commit*
+*metadata*
+*offset*
+*source*
+*.crc
+*.xml
+*.iml
+*__pycache__*
+
