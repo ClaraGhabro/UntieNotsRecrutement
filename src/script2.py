@@ -16,13 +16,11 @@ if __name__ == "__main__":
 
         for elt in topics:
             if m["word"] == elt:
-                print("Q3: on a un topic")
-                # on envoie dans Q3
+                # on envoie dans Q3: on a un nom de topic
                 q3_message = { "source": m["source"], "topic": elt}
                 producer.send("topicName", json.dumps(q3_message).encode())
             if m["word"] in topics[elt]:
-                print("Q2 on a un keyword de topic")
-                # on envoie dans Q2
+                # on envoie dans Q2: on a un keyword de topic
                 belong_to_topic.append(elt)
 
         if len(belong_to_topic) != 0:
