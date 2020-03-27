@@ -30,7 +30,6 @@ def udf_process(rdd):
             producer.send("topicKeyword", json.dumps(q2_message).encode())
 
 if __name__ == "__main__":
-    # Creation du Stream
     sc = SparkContext(appName='PythonStreamingRecieverKafka')
     ssc = StreamingContext(sc, 2)  # 2 second window
     zookeeper_broker = "localhost:2181"

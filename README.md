@@ -2,7 +2,7 @@
 
 ### Dépendances :
 
-python 3.8 (non compatible avec pyspark)  
+python 3.6  
 kafka-python 2.0.1  
 pyarrow 0.16.0  
 pandas 1.0.3  
@@ -49,4 +49,11 @@ Le script script3_q3.py receptionne les messages envoyés dans le topic **Q3** e
 Lecture des fichiers dans **output/q2** et **output/q3**, et creation des tables associées.  
 Chargement en mémoire des topics contenus dans le fichier **topics.topics.json**  
 Pour chaque topic, on recupère les sources associées ainsi que le nombre d'occurence de chacun des mot appartenant au topic et présents dans le document  
-On calcule ensuite les faux positifs, puis la pertinence de chacun des keyword du topic.  
+On calcule ensuite les faux positifs.  
+En derniere, on calcule la pertinence de chacun des keyword du topic. (Pas encore effectué au moment du rendu, sera probablement fait durant le weekend)  
+
+
+### Remarques
+
+- Lors de l'execution du script 3, il y a 3 fichiers .parquet qui sont générés, et qui semblent dupliquer les données par rapport au corpus initial. J'ai n'ai pas vraiment eu le temps d'investiguer.  
+- Les topics dans le fichiers json gagneraient a être enrichis pour qu'il y ai beaucoup moins de faux positifs lors de l'analyse par le script 4.

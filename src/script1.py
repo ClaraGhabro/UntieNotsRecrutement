@@ -5,30 +5,18 @@ import os
 
 CHAR_TO_REMOVE = ['.', ',', '(', ')', '"', "'",'!', '?', ';', ':', '«', '»', '\n']
 
+
 def clean_line(line):
-    """
-    Remove useless char
-    :param line: Sentece split by space
-    :return line: without ponctuation char
-    """
     for c in CHAR_TO_REMOVE:
         line = line.replace(c, " ")
     return line
 
+
 def remove_empty(words):
-    """
-    Remove empty words
-    :param words:
-    :return:
-    """
     return list(filter(("").__ne__, words))
 
+
 def read_corpus(dir_path):
-    """
-    Read all the files contained in the given path, split text in words.
-    :param dir_path:
-    :return:
-    """
     data_paths = [os.path.join(pth, f) for pth, dirs, files in os.walk(dir_path) for f in files]
     words_dico = {}
     for p in data_paths:
