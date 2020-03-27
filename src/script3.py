@@ -1,5 +1,5 @@
 import os
-os.environ['PYSPARK_SUBMIT_ARGS'] = '--jars spark-sql-kafka-0-10_2.11-2.4.5.jar,kafka-clients-2.4.1.jar pyspark-shell'
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--jars resources/spark-sql-kafka-0-10_2.11-2.4.5.jar,resources/kafka-clients-2.4.1.jar pyspark-shell'
 from pyspark.sql import SparkSession
 
 

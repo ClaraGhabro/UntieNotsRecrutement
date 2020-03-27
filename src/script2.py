@@ -1,6 +1,6 @@
 import os
 import json
-os.environ['PYSPARK_SUBMIT_ARGS'] = '--jars spark-streaming-kafka-0-8-assembly_2.11-2.4.5.jar pyspark-shell'
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--jars resources/spark-streaming-kafka-0-8-assembly_2.11-2.4.5.jar pyspark-shell'
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
@@ -38,7 +38,6 @@ if __name__ == "__main__":
 
     topics = json.load(open(JSON_PATH, 'r'))
     kafkaStream = KafkaUtils.createStream(groupId="group1", ssc=ssc, topics={topic: 1}, zkQuorum=zookeeper_broker)
-    print("count: ", kafkaStream)
 
     kafkaStream.foreachRDD(lambda x: x.foreachPartition(lambda message: udf_process(message)))
 
