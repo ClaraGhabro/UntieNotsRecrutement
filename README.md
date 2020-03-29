@@ -56,4 +56,6 @@ En derniere, on calcule la pertinence de chacun des keyword du topic. (Pas encor
 ### Remarques
 
 - Lors de l'execution du script 3, il y a 3 fichiers .parquet qui sont générés, et qui semblent dupliquer les données par rapport au corpus initial. J'ai n'ai pas vraiment eu le temps d'investiguer.  
-- Les topics dans le fichiers json gagneraient a être enrichis pour qu'il y ai beaucoup moins de faux positifs lors de l'analyse par le script 4.
+- Les topics dans le fichiers json gagneraient a être enrichis pour qu'il y ai beaucoup moins de faux positifs lors de l'analyse par le script 4.  
+- Le stockage des faux positifs est fait de facon assez bancale, ce qui rend le calcul des taux tres alambiqué. Il aurait fallu intégrer les resutlats dans une table directement.  
+- Implication : je n'ai calculé que le taux de présence global de chacun des keyword au lieu des différents taux.

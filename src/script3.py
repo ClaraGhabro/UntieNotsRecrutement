@@ -29,6 +29,7 @@ def save_to_parquet(queue, path):
 
 if __name__ == "__main__":
     spark = SparkSession.builder.appName("save_to_parquet").getOrCreate()
+
     df_queue2 = consume_from_kafka(spark, "topicKeyword")
     query_queue2 = save_to_parquet(df_queue2, Q2_PATH)
 
